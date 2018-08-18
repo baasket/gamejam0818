@@ -19,6 +19,7 @@ public class EnemyManager : MonoBehaviour
 	void Start ()
     {
         prefabBank = GetComponent<PrefabBank>();
+        timeSinceLastRaven = -firstRavenDelay;
 	}
 	
 	// Update is called once per frame

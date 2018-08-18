@@ -60,7 +60,15 @@ public class FruitsManager : MonoBehaviour
 
     private bool isResourceAvaible()
     {
-        return true;
+        if(roots.getWater() >= waterCost)
+        {
+            if(foliage.getSun() >= sunCost)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void loseFruit()

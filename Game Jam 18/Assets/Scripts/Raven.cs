@@ -6,6 +6,7 @@ public class Raven : Enemy
 {
 
     private Vector3 destination;
+    private Vector3 lookAtDestination;
     [Range(0.0f, 1.0f)]
     public float flightSpeed = 1.0f;
 
@@ -20,6 +21,8 @@ public class Raven : Enemy
     private bool eating;
     private float eatingTime;
 
+    public Animator animator;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -31,15 +34,17 @@ public class Raven : Enemy
     {
         transform.position = Vector3.Slerp(transform.position, destination, 
             Time.deltaTime*flightSpeed);
-        transform.LookAt(destination);
+        transform.LookAt(lookAtDestination);
 
-        if(!slowFlight && !eating)
+        if (!slowFlight && !eating)
         {
             float distance = Vector3.Distance(transform.position, destination);
 
             if (distance < slowFlightDistance)
             {
                 slowFlight = true;
+                animator.Play("rapidFlighAnimation");
+                animator.SetBool("rapidAnimation", true);
             }
         }
         else if(slowFlight && !eating)
@@ -50,7 +55,7 @@ public class Raven : Enemy
             {
                 eating = true;
                 slowFlight = false;
-                Debug.Log("Start eating");
+                animator.SetBool("rapidAnimation", false);
             }
         }
         else if(eating)
@@ -67,11 +72,13 @@ public class Raven : Enemy
     public void init()
     {
         active = true;
+        animator.SetBool("rapidAnimation", false);
 
         currentHealth = maxHealth;
 
         destination = tree.getAnyFoliage();
-        transform.LookAt(destination);
+        lookAtDestination = destination + Vector3.up * 2.0f ;
+        transform.LookAt(lookAtDestination);
 
         slowFlight = false;
         eating = false;
@@ -87,6 +94,7 @@ public class Raven : Enemy
     private void eatFruit()
     {
         eatingTime = 0.0f;
+        
         fruitManager.loseFruit();
     }
 

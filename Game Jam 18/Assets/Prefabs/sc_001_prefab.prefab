@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 0
-  lifespan: 2000
+  lifespan: 45
   attackPeriod: 0.5
   canTargetFlying: 1
   canTargetWalking: 1

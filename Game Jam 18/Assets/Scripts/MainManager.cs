@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
+    private InterfaceManager interfaceManager;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        interfaceManager = GetComponent<InterfaceManager>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void gameOver()
+    {
+        
+    }
 
     #region Active Capacities
 

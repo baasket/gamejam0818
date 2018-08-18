@@ -9,7 +9,24 @@ public class InterfaceManager : MonoBehaviour
     public Text sunDisplay;
     public Text waterDisplay;
 
+    public GameObject gameOverDisplay;
+
     public GameObject upgradeMenu;
+
+    void Start()
+    {
+        gameOverDisplay.SetActive(false);
+    }
+
+    public void displayGameOver()
+    {
+        gameOverDisplay.SetActive(true);
+    }
+
+    public void toggleUpgradeMenu()
+    {
+        upgradeMenu.SetActive(!upgradeMenu.activeSelf);
+    }
 
     public void updateFruitsDisplay(int val)
     {
@@ -45,11 +62,6 @@ public class InterfaceManager : MonoBehaviour
         {
             waterDisplay.text = "0";
         }
-    }
-	
-    public void toggleUpgradeMenu()
-    {
-        upgradeMenu.SetActive(!upgradeMenu.activeSelf);
     }
 
 }

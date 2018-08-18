@@ -52,7 +52,7 @@ Transform:
   m_GameObject: {fileID: 1473988640697690}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 4796545709003448}
   m_RootOrder: 0
@@ -124,4 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74eb2b946f238cd438d73d175d7c7247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flightSpeed: 0.434
+  maxHealth: 10
+  currentHealth: 0
+  flightSpeed: 0.211

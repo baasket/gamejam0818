@@ -50,10 +50,41 @@ public class Scarecrow : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    #region Attack
+
     private void attack()
     {
         timeSinceLastAttack = 0.0f;
+        Enemy target;
+
+        if(canTargetFlying && canTargetWalking)
+        {
+            target = enemyManager.getAnyEnemy();
+            shoot(target);
+        }
+        else if(canTargetFlying)
+        {
+            target = enemyManager.getAnyRaven();
+            shoot(target);
+        }
+        else if(canTargetWalking)
+        {
+            //target = enemyManager.getAnySquirrel();
+        }
     }
+
+    private void shoot(Enemy enemy)
+    {
+        if(enemy == null)
+        {
+            return;
+        }
+
+        Bullet newBullet = prefabBank.poolBullet(ammoName);
+        newBullet.flyTo(transform.position, enemy);
+    }
+
+    #endregion
 
     private void die()
     {

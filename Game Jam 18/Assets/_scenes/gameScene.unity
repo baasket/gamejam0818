@@ -2271,7 +2271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 225479577}
-  distance: 20
+  distance: 15
   yConstant: 2
   rotationSpeed: 2
 --- !u!1 &551572570
@@ -7634,6 +7634,8 @@ MonoBehaviour:
   scarecrow_003_prefab: {fileID: 1908196371488336, guid: 74a3e7afae684d846a702a18f9329ecd,
     type: 2}
   raven_prefab: {fileID: 1766832271280306, guid: 65a9dfb975fcc444090472c0f9d71b20,
+    type: 2}
+  bullet_prefab: {fileID: 1076709589081356, guid: b900c32a061f2a24ba78d70837bbcfd6,
     type: 2}
   waterCosts: 01000000030000000a000000
   sunCosts: 02000000010000000a000000

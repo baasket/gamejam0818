@@ -15,6 +15,8 @@ public class PrefabBank : MonoBehaviour
 
     public GameObject raven_prefab;
 
+    public GameObject bullet_prefab;
+
     public int[] waterCosts;
     public int[] sunCosts;
 
@@ -23,12 +25,39 @@ public class PrefabBank : MonoBehaviour
     private Stack<Scarecrow> sc_pool_003 = new Stack<Scarecrow>();
 
     private Stack<Raven> ravenPool = new Stack<Raven>();
+    private Stack<Bullet> bulletPool = new Stack<Bullet>();
 
     void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
         spawningManager = GetComponent<SpawningManager>();
     }
+
+    #region Bullets
+    public Bullet poolBullet(string ammoName)
+    {
+        if(bulletPool.Count == 0)
+        {
+            GameObject newObject = Instantiate(bullet_prefab);
+            Bullet newBullet = newObject.GetComponent<Bullet>();
+            newBullet.setPrefabBank(this);
+            return newBullet;
+        }
+        else
+        {
+            Bullet newBullet = bulletPool.Pop();
+            newBullet.gameObject.SetActive(true);
+            return newBullet;
+        }
+    }
+
+    public void takeOutBullet(Bullet val, string ammoType)
+    {
+        bulletPool.Push(val);
+        val.gameObject.SetActive(false);
+    }
+
+    #endregion
 
     #region Raven
     public Raven poolRaven()
@@ -40,11 +69,14 @@ public class PrefabBank : MonoBehaviour
             newRaven.setPrefabBank(this);
             newRaven.setEnemyManager(enemyManager);
             newRaven.setTree(tree);
+            newRaven.gameObject.SetActive(true);
             return newRaven;
         }
         else
         {
-            return ravenPool.Pop();
+            Raven newRaven = ravenPool.Pop();
+            newRaven.gameObject.SetActive(true);
+            return newRaven;
         }
     }
 

@@ -35,5 +35,6 @@ public class Raven : Enemy
     {
         active = false;
         prefabBank.takeOutRaven(this);
+        enemyManager.removeRaven(this);
     }
 }

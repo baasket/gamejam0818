@@ -41,6 +41,11 @@ public class Enemy : MonoBehaviour
         prefabBank = val;
     }
 
+    public Vector3 getTarget()
+    {
+        return transform.position;
+    }
+
     public void takeDammage(float val)
     {
         currentHealth -= val;

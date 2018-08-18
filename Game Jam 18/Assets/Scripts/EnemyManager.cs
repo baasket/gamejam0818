@@ -59,17 +59,22 @@ public class EnemyManager : MonoBehaviour
         ravens.Remove(val);
     }
 
+    public Enemy getAnyEnemy()
+    {
+        return getAnyRaven();
+    }
+
     public Raven getAnyRaven()
     {
         int len = ravens.Count;
 
-        if(len == 0)
+        if(ravens.Count == 0)
         {
             return null;
         }
         else
         {
-            return ravens[Random.Range(0, len)];
+            return ravens[0];
         }
     }
 }

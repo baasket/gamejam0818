@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
 
     private List<Raven> ravens = new List<Raven>();
 
+    public float firstRavenDelay = 10.0f;
     public float ravenSpawnPeriod = 1.0f;
     private float timeSinceLastRaven;
 

@@ -55,7 +55,7 @@ public class FruitsManager : MonoBehaviour
 
     private void gameOver()
     {
-
+        mainManager.gameOver();
     }
 
     private bool isResourceAvaible()

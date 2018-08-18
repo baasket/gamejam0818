@@ -5,6 +5,7 @@ using UnityEngine;
 public class PrefabBank : MonoBehaviour
 {
     private EnemyManager enemyManager;
+    private FruitsManager fruitManager;
     private SpawningManager spawningManager;
 
     public Tree tree;
@@ -30,6 +31,7 @@ public class PrefabBank : MonoBehaviour
     void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
+        fruitManager = GetComponent<FruitsManager>();
         spawningManager = GetComponent<SpawningManager>();
     }
 
@@ -68,6 +70,7 @@ public class PrefabBank : MonoBehaviour
             Raven newRaven = newObject.GetComponent<Raven>();
             newRaven.setPrefabBank(this);
             newRaven.setEnemyManager(enemyManager);
+            newRaven.setFruitManager(fruitManager);
             newRaven.setTree(tree);
             newRaven.gameObject.SetActive(true);
             return newRaven;

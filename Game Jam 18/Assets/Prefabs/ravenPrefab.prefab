@@ -126,4 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 13
   currentHealth: 0
-  flightSpeed: 0.211
+  flightSpeed: 0.4
+  slowFlightDistance: 2.24
+  eatingDistance: 1.08
+  eatingPeriod: 3

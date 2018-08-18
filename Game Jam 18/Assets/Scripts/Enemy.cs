@@ -10,9 +10,11 @@ public class Enemy : MonoBehaviour
     public float maxHealth = 10.0f;
     public float currentHealth;
 
+    protected EnemyManager enemyManager;
+    protected FruitsManager fruitManager;
     protected PrefabBank prefabBank;
     protected Tree tree;
-    protected EnemyManager enemyManager;
+    
 
 	// Use this for initialization
 	void Start ()
@@ -29,6 +31,11 @@ public class Enemy : MonoBehaviour
     public void setEnemyManager(EnemyManager val)
     {
         enemyManager = val;
+    }
+
+    public void setFruitManager(FruitsManager val)
+    {
+        fruitManager = val;
     }
 
     public void setTree(Tree val)

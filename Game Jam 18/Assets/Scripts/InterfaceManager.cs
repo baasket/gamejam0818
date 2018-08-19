@@ -10,6 +10,10 @@ public class InterfaceManager : MonoBehaviour
     public Text waterDisplay;
     public Text timer;
 
+    public string timerMsg_part_001 = "";
+    public string timerMsg_part_002 = "";
+    public string timerMsg_part_003 = "";
+
     public GameObject gameOverDisplay;
 
     public GameObject upgradeMenu;
@@ -24,10 +28,14 @@ public class InterfaceManager : MonoBehaviour
         gameOverDisplay.SetActive(true);
     }
 
-    public void setTimer(float val)
+    public void setTimer(float time, int score)
     {
-        int seconds = (int)val;
-        timer.text = seconds.ToString();
+        int seconds = (int)time;
+
+        string msg = timerMsg_part_001 + score.ToString() + timerMsg_part_002
+            + seconds.ToString() + timerMsg_part_003;
+
+        timer.text = msg;
     }
 
     public void showTimer(bool val=true)

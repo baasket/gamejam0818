@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        /*
         timeSinceLastRaven += Time.deltaTime;
 
 		if(timeSinceLastRaven > ravenSpawnPeriod)
@@ -33,7 +34,16 @@ public class EnemyManager : MonoBehaviour
             timeSinceLastRaven = 0.0f;
             computeRavenSpawnPeriod();
         }
+        */
 	}
+
+    public void spawnWave(int ravenCount)
+    {
+        for(int i = 0; i < ravenCount; i++)
+        {
+            spawnRaven();
+        }
+    }
 
     private void computeRavenSpawnPeriod()
     {

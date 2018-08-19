@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4809706661357448}
   - component: {fileID: 114951101719212644}
   m_Layer: 0
-  m_Name: bullet_001_prefab
+  m_Name: bullet_002_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,5 +126,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoType: basic
   speed: 50
-  damage: 3
+  damage: 5
   impactName: basic

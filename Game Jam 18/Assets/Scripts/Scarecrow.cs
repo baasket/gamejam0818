@@ -10,6 +10,7 @@ public class Scarecrow : MonoBehaviour
     private int slot;
 
     public float attackPeriod;
+    public float firstAttackDelay;
     public bool canTargetFlying;
     public bool canTargetWalking;
 
@@ -17,6 +18,7 @@ public class Scarecrow : MonoBehaviour
 
     public int SC_type;
     public string ammoName;
+    public GameObject shootingPoint;
 
     private PrefabBank prefabBank;
     private EnemyManager enemyManager;
@@ -43,7 +45,7 @@ public class Scarecrow : MonoBehaviour
 
     public void init()
     {
-        timeSinceLastAttack = 0.0f;
+        timeSinceLastAttack = -firstAttackDelay;
         timeSinceSpawn = 0.0f;
 
         alive = true;
@@ -80,8 +82,13 @@ public class Scarecrow : MonoBehaviour
             return;
         }
 
+        Vector3 lookAtTarget = enemy.getTarget();
+        lookAtTarget.y = 1.0f;
+
+        transform.LookAt(lookAtTarget);
+
         Bullet newBullet = prefabBank.poolBullet(ammoName);
-        newBullet.flyTo(transform.position, enemy);
+        newBullet.flyTo(shootingPoint.transform.position, enemy);
     }
 
     #endregion

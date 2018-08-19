@@ -58,6 +58,11 @@ public class FruitsManager : MonoBehaviour
         mainManager.gameOver();
     }
 
+    public int getFruitCount()
+    {
+        return fruitsCount;
+    }
+
     private bool isResourceAvaible()
     {
         if(roots.getWater() >= waterCost)

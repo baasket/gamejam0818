@@ -999,12 +999,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74eb2b946f238cd438d73d175d7c7247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 15
   currentHealth: 0
   flightSpeed: 0.35
   slowFlightDistance: 2.6
   eatingDistance: 0.64
-  eatingPeriod: 1.97
+  eatingPeriod: 1
   heightCorrection: 2.36
   animator: {fileID: 95946879890446446}
 --- !u!137 &137981575263117276

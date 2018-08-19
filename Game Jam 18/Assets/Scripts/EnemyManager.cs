@@ -45,9 +45,7 @@ public class EnemyManager : MonoBehaviour
         Vector3 pos = spawningPoint.transform.position;
         pos += spawningPoint.transform.right * Random.Range(-vectorVar, vectorVar);
 
-        pos += new Vector3(Random.Range(-vectorVar, vectorVar),
-            Random.Range(-vectorVar, vectorVar),
-            Random.Range(-vectorVar, vectorVar));
+        pos += spawningPoint.transform.up * Random.Range(0.0f, vectorVar/5.0f);
 
         Raven newRaven = prefabBank.poolRaven();
 

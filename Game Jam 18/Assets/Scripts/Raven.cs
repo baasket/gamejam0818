@@ -16,6 +16,8 @@ public class Raven : Enemy
     public float eatingDistance;
     [Range(0.0f, 5.0f)]
     public float eatingPeriod;
+    [Range(0.0f, 5.0f)]
+    public float heightCorrection;
 
     private bool slowFlight;
     private bool eating;
@@ -32,23 +34,29 @@ public class Raven : Enemy
 	// Update is called once per frame
 	void Update ()
     {
-        transform.position = Vector3.Slerp(transform.position, destination, 
-            Time.deltaTime*flightSpeed);
-        transform.LookAt(lookAtDestination);
+        
+        
 
-        if (!slowFlight && !eating)
+        if (!slowFlight && !eating) // normal flight
         {
-            float distance = Vector3.Distance(transform.position, destination);
+            transform.position = Vector3.Lerp(transform.position, lookAtDestination,
+            Time.deltaTime * flightSpeed);
+
+            float distance = Vector3.Distance(transform.position, lookAtDestination);
 
             if (distance < slowFlightDistance)
             {
                 slowFlight = true;
-                animator.Play("rapidFlighAnimation");
+                //animator.Play("rapidFlighAnimation");
+                
                 animator.SetBool("rapidAnimation", true);
             }
         }
-        else if(slowFlight && !eating)
+        else if(slowFlight && !eating) // final approach
         {
+            transform.position = Vector3.Lerp(transform.position, destination,
+            Time.deltaTime * flightSpeed);
+
             float distance = Vector3.Distance(transform.position, destination);
 
             if(distance < eatingDistance)
@@ -58,7 +66,7 @@ public class Raven : Enemy
                 animator.SetBool("rapidAnimation", false);
             }
         }
-        else if(eating)
+        else if(eating) // eating
         {
             eatingTime += Time.deltaTime;
 
@@ -67,6 +75,8 @@ public class Raven : Enemy
                 eatFruit();
             }
         }
+
+        transform.LookAt(lookAtDestination);
     }
 
     public void init()
@@ -77,7 +87,7 @@ public class Raven : Enemy
         currentHealth = maxHealth;
 
         destination = tree.getAnyFoliage();
-        lookAtDestination = destination + Vector3.up * 2.0f ;
+        lookAtDestination = destination + Vector3.up * heightCorrection;
         transform.LookAt(lookAtDestination);
 
         slowFlight = false;

@@ -8,6 +8,7 @@ public class InterfaceManager : MonoBehaviour
     public Text fruitsDisplay;
     public Text sunDisplay;
     public Text waterDisplay;
+    public Text timer;
 
     public GameObject gameOverDisplay;
 
@@ -21,6 +22,17 @@ public class InterfaceManager : MonoBehaviour
     public void displayGameOver()
     {
         gameOverDisplay.SetActive(true);
+    }
+
+    public void setTimer(float val)
+    {
+        int seconds = (int)val;
+        timer.text = seconds.ToString();
+    }
+
+    public void showTimer(bool val=true)
+    {
+        timer.gameObject.SetActive(val);
     }
 
     public void toggleUpgradeMenu()

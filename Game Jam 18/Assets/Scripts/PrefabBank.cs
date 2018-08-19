@@ -17,6 +17,7 @@ public class PrefabBank : MonoBehaviour
     public GameObject raven_prefab;
 
     public GameObject bullet_prefab;
+    public GameObject cocoNutPrefab;
 
     public int[] waterCosts;
     public int[] sunCosts;
@@ -27,6 +28,7 @@ public class PrefabBank : MonoBehaviour
 
     private Stack<Raven> ravenPool = new Stack<Raven>();
     private Stack<Bullet> bulletPool = new Stack<Bullet>();
+    private Stack<Bullet> cocoNutPool = new Stack<Bullet>();
 
     void Start()
     {
@@ -38,18 +40,38 @@ public class PrefabBank : MonoBehaviour
     #region Bullets
     public Bullet poolBullet(string ammoName)
     {
-        if(bulletPool.Count == 0)
+        if (ammoName == "heavy")
         {
-            GameObject newObject = Instantiate(bullet_prefab);
-            Bullet newBullet = newObject.GetComponent<Bullet>();
-            newBullet.setPrefabBank(this);
-            return newBullet;
+            if (cocoNutPool.Count == 0)
+            {
+                GameObject newObject = Instantiate(cocoNutPrefab);
+                Bullet newBullet = newObject.GetComponent<Bullet>();
+                newBullet.setPrefabBank(this);
+                return newBullet;
+            }
+            else
+            {
+                Bullet newBullet = cocoNutPool.Pop();
+                newBullet.gameObject.SetActive(true);
+                return newBullet;
+            }
+
         }
         else
         {
-            Bullet newBullet = bulletPool.Pop();
-            newBullet.gameObject.SetActive(true);
-            return newBullet;
+            if (bulletPool.Count == 0)
+            {
+                GameObject newObject = Instantiate(bullet_prefab);
+                Bullet newBullet = newObject.GetComponent<Bullet>();
+                newBullet.setPrefabBank(this);
+                return newBullet;
+            }
+            else
+            {
+                Bullet newBullet = bulletPool.Pop();
+                newBullet.gameObject.SetActive(true);
+                return newBullet;
+            }
         }
     }
 

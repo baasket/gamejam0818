@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
 
     private List<Raven> ravens = new List<Raven>();
 
+    public float firstRavenDelay = 10.0f;
     public float ravenSpawnPeriod = 1.0f;
     private float timeSinceLastRaven;
 
@@ -18,11 +19,13 @@ public class EnemyManager : MonoBehaviour
 	void Start ()
     {
         prefabBank = GetComponent<PrefabBank>();
+        timeSinceLastRaven = -firstRavenDelay;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        /*
         timeSinceLastRaven += Time.deltaTime;
 
 		if(timeSinceLastRaven > ravenSpawnPeriod)
@@ -31,7 +34,16 @@ public class EnemyManager : MonoBehaviour
             timeSinceLastRaven = 0.0f;
             computeRavenSpawnPeriod();
         }
+        */
 	}
+
+    public void spawnWave(int ravenCount)
+    {
+        for(int i = 0; i < ravenCount; i++)
+        {
+            spawnRaven();
+        }
+    }
 
     private void computeRavenSpawnPeriod()
     {
@@ -43,9 +55,7 @@ public class EnemyManager : MonoBehaviour
         Vector3 pos = spawningPoint.transform.position;
         pos += spawningPoint.transform.right * Random.Range(-vectorVar, vectorVar);
 
-        pos += new Vector3(Random.Range(-vectorVar, vectorVar),
-            Random.Range(-vectorVar, vectorVar),
-            Random.Range(-vectorVar, vectorVar));
+        pos += spawningPoint.transform.up * Random.Range(0.0f, vectorVar/5.0f);
 
         Raven newRaven = prefabBank.poolRaven();
 
@@ -59,17 +69,22 @@ public class EnemyManager : MonoBehaviour
         ravens.Remove(val);
     }
 
+    public Enemy getAnyEnemy()
+    {
+        return getAnyRaven();
+    }
+
     public Raven getAnyRaven()
     {
         int len = ravens.Count;
 
-        if(len == 0)
+        if(ravens.Count == 0)
         {
             return null;
         }
         else
         {
-            return ravens[Random.Range(0, len)];
+            return ravens[0];
         }
     }
 }

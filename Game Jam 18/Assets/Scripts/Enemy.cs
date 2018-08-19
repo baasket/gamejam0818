@@ -10,9 +10,11 @@ public class Enemy : MonoBehaviour
     public float maxHealth = 10.0f;
     public float currentHealth;
 
+    protected EnemyManager enemyManager;
+    protected FruitsManager fruitManager;
     protected PrefabBank prefabBank;
     protected Tree tree;
-    protected EnemyManager enemyManager;
+    
 
 	// Use this for initialization
 	void Start ()
@@ -31,6 +33,11 @@ public class Enemy : MonoBehaviour
         enemyManager = val;
     }
 
+    public void setFruitManager(FruitsManager val)
+    {
+        fruitManager = val;
+    }
+
     public void setTree(Tree val)
     {
         tree = val;
@@ -39,6 +46,11 @@ public class Enemy : MonoBehaviour
     public void setPrefabBank(PrefabBank val)
     {
         prefabBank = val;
+    }
+
+    public Vector3 getTarget()
+    {
+        return transform.position;
     }
 
     public void takeDammage(float val)

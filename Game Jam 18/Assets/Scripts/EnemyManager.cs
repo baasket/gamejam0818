@@ -15,8 +15,15 @@ public class EnemyManager : MonoBehaviour
     public float ravenSpawnPeriod = 1.0f;
     private float timeSinceLastRaven;
 
-	// Use this for initialization
-	void Start ()
+    
+    public AudioClip[] spawnedSound;
+    public AudioClip[] killedSound;
+
+    public AudioSource ravenSpawned;
+    public AudioSource ravenKilled;
+
+    // Use this for initialization
+    void Start ()
     {
         prefabBank = GetComponent<PrefabBank>();
         timeSinceLastRaven = -firstRavenDelay;
@@ -43,6 +50,10 @@ public class EnemyManager : MonoBehaviour
         {
             spawnRaven();
         }
+
+        int idx = Random.Range(0, spawnedSound.Length);
+        ravenSpawned.clip = spawnedSound[idx];
+        ravenSpawned.Play();
     }
 
     private void computeRavenSpawnPeriod()
@@ -67,6 +78,13 @@ public class EnemyManager : MonoBehaviour
     public void removeRaven(Raven val)
     {
         ravens.Remove(val);
+
+        if(!ravenKilled.isPlaying)
+        {
+            int idx = Random.Range(0, killedSound.Length);
+            ravenKilled.clip = killedSound[idx];
+            ravenKilled.Play();
+        }
     }
 
     public Enemy getAnyEnemy()

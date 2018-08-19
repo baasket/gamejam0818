@@ -5,6 +5,8 @@ using UnityEngine;
 public class Raven : Enemy
 {
 
+
+
     private Vector3 destination;
     private Vector3 lookAtDestination;
     [Range(0.0f, 1.0f)]
@@ -28,7 +30,7 @@ public class Raven : Enemy
 	// Use this for initialization
 	void Start ()
     {
-
+        
 	}
 	
 	// Update is called once per frame

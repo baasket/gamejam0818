@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    AudioSource audioSource;
     public string ammoType;
     public float speed;
     public float damage;
@@ -42,6 +43,10 @@ public class Bullet : MonoBehaviour
 
     public void flyTo(Vector3 origin, Enemy target)
     {
+
+        audioSource = GetComponent<AudioSource>();
+        
+
         flying = true;
         enemy = target;
         Vector3 targetPos = target.getTarget();
@@ -51,6 +56,8 @@ public class Bullet : MonoBehaviour
         finishTime = trajectory.magnitude / speed;
         trajectory.Normalize();
         flightTime = 0.0f;
+
+        audioSource.Play();
     }
 
     private void hit()

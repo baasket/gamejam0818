@@ -56,11 +56,17 @@ public class MainManager : MonoBehaviour
             timerManagement();
             ravenManagement();
         }
+
+        if(scoreToNextLevel == 105 && fruitsManager.getFruitCount() == 100)
+        {
+            interfaceManager.displayGameOver("Victoire");
+            gameIsOver = true;
+        }
 	}
 
     public void gameOver()
     {
-        interfaceManager.displayGameOver();
+        interfaceManager.displayGameOver("Game Over");
         gameIsOver = true;
     }
 

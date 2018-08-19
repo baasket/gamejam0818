@@ -1989,9 +1989,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 0
-  lifespan: 35
-  attackPeriod: 2
-  firstAttackDelay: 2
+  lifespan: 20
+  attackPeriod: 1.5
+  firstAttackDelay: 1.5
   canTargetFlying: 1
   canTargetWalking: 1
   SC_type: 1

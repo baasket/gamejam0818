@@ -23,8 +23,9 @@ public class InterfaceManager : MonoBehaviour
         gameOverDisplay.SetActive(false);
     }
 
-    public void displayGameOver()
+    public void displayGameOver(string val)
     {
+        gameOverDisplay.GetComponent<Text>().text = val;
         gameOverDisplay.SetActive(true);
     }
 

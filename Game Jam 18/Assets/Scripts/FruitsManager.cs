@@ -20,8 +20,11 @@ public class FruitsManager : MonoBehaviour
     public int sunCost;
     public int waterCost;
 
-	// Use this for initialization
-	void Start ()
+    public AudioSource audioSourceAdd;
+    public AudioSource audioSourceRemove;
+
+    // Use this for initialization
+    void Start ()
     {
         foliage = GetComponent<Foliage>();
         mainManager = GetComponent<MainManager>();
@@ -47,6 +50,7 @@ public class FruitsManager : MonoBehaviour
                 fruitsCount++;
                 foliage.spendSun(sunCost);
                 roots.spendWater(waterCost);
+                audioSourceAdd.Play();
             }
         }
 
@@ -80,6 +84,7 @@ public class FruitsManager : MonoBehaviour
     {
         fruitsCount--;
         updateDisplay();
+        audioSourceRemove.Play();
         if(fruitsCount <= 0)
         {
             gameOver();
